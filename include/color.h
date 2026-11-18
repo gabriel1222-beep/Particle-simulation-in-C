@@ -13,6 +13,6 @@ typedef enum Color_t {
 
     N_OF_COLORS
 } Color_t;
-static const uint8_t rgb_table[N_OF_COLORS][4];
+extern const uint8_t rgb_table[N_OF_COLORS][4];
 void Color_loadRGBA(uint8_t dest[static 4],Color_t color);
 #endif
