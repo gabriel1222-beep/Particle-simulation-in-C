@@ -20,7 +20,7 @@ void render_destroy(){
    SDL_DestroyWindow(window);
    SDL_DestroyTexture(ball_texture);
 }
-void Render_init() {
+int Render_init() {
   if (SDL_Init(SDL_INIT_EVENTS) != 0) {
     goto exitErrorSDL;
   }
@@ -38,14 +38,13 @@ void Render_init() {
   if (SDL_SetTextureBlendMode(ball_texture, SDL_BLENDMODE_BLEND) != 0) {
     goto exitErrorSDL_img;
   }
-  return;
+  return 0;
 exitErrorSDL:
   printErr("Failed to init SDL", SDL_GetError());
-  goto exit;
+  return -1;
 exitErrorSDL_img:
   printErr("Failed to init SDL", IMG_GetError());
-exit:
-  exit(EXIT_FAILURE);
+  return -1;
 }
 void Render_clear(Color_t color) {
   SDL_SetRenderDrawColor(render, rgb_table[color][0], rgb_table[color][1], rgb_table[color][2],
